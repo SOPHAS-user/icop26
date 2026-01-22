@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ICoP 2026 Conference Home</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3E1C63", // Deep Purple for text/branding
+                        "primary-light": "#6a4c93", 
+                        "background-light": "#FDF7F5", // Warm off-white
+                        "background-dark": "#0B0E16", // Deep navy/black
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#151b2b",
+                        "accent-purple": "#7E6CAA", // Sidebar purple
+                        "accent-blue": "#4A6FA5", // Ocean tones
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'sketch-pattern': "url('https://www.transparenttextures.com/patterns/sketch-header.png')",
+                    }
+                },
+            },
+        };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style>
+        .text-outline-dark {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+        }
+        .text-outline-light {
+            -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05);
+        }
+        .blend-multiply {
+            mix-blend-mode: multiply;
+        }
+        .blend-screen {
+            mix-blend-mode: screen;
+        }::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155; 
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 transition-colors duration-300 font-sans min-h-screen flex flex-col overflow-x-hidden">
+<div class="fixed top-4 right-4 z-50 lg:hidden">
+<button class="flex items-center justify-center w-10 h-10 rounded-full bg-white/80 dark:bg-slate-800/80 backdrop-blur shadow-lg text-primary dark:text-white hover:bg-white dark:hover:bg-slate-700 transition-all" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons text-xl">brightness_medium</span>
+</button>
+</div>
+<div class="flex flex-col lg:flex-row flex-1">
+<main class="relative flex-1 min-h-screen flex flex-col justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Calm sea at sunset with pastel colors" class="w-full h-full object-cover opacity-60 dark:opacity-30 transition-opacity duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2Wezn_IJG7v07lEpkm3b1Cifg1PdJFGo4eA1pm_BOdQ0FEW6ElpxdVxrBI3a0eL6LFPGWkk-C8EcHJNaoncbwsB1GdO0z-6DLaDYSKdieWP4MiyD40Mw4UhSk1MRbgEFzn13Ird8wgbsKVOVke5d4FIxMCmx3AceU7I74A1zbfHrExONRMoc03Ceyn1goBZvJMSeF_cnaBUV2SE3qGm_AvNH9oal2thC-v9TvItLouIQPTQBanGbQA3ioOPHW_MbgtxNkQEpZ4os"/>
+<div class="absolute inset-0 bg-gradient-to-t from-white/90 via-white/40 to-white/10 dark:from-background-dark dark:via-background-dark/80 dark:to-background-dark/40"></div>
+<div class="absolute top-6 left-6 lg:left-16 lg:top-8 z-20 flex gap-1 sm:gap-3 md:gap-6 items-center opacity-60 hover:opacity-90 transition-opacity">
+<img alt="ISOP Logo" class="h-5 sm:h-6 md:h-8 w-auto" src="assets/logos/isop.png"/>
+<img alt="SOPHAS Logo" class="h-4 sm:h-5 md:h-6 w-auto border-l border-white/30 pl-1 sm:pl-3 md:pl-6" src="assets/logos/sophas.png"/>
+<img alt="MAHE Logo" class="h-5 sm:h-6 md:h-8 w-auto border-l border-white/30 pl-1 sm:pl-3 md:pl-6" src="assets/logos/mahe.png"/>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-1/2 pointer-events-none opacity-40 dark:opacity-20 flex justify-between items-end overflow-hidden">
+<img alt="Coconut palm illustration" class="w-1/3 h-auto object-contain filter grayscale contrast-200 brightness-75 mix-blend-multiply dark:mix-blend-screen transform translate-y-12 -translate-x-12" src="assets/outline_images/coconut.png"/>
+<img alt="Temple architecture sketch" class="hidden lg:block w-1/4 h-auto object-contain filter grayscale contrast-200 brightness-75 mix-blend-multiply dark:mix-blend-screen transform translate-y-24" src="assets/outline_images/temple.png"/>
+<img alt="MAHE campus illustration" class="w-1/3 h-auto object-contain filter grayscale contrast-200 brightness-75 mix-blend-multiply dark:mix-blend-screen transform translate-y-12 translate-x-12" src="assets/outline_images/mahe.png"/>
+</div>
+</div>
+<div class="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-16 py-12 flex flex-col justify-center h-full">
+<div class="absolute top-0 right-6 hidden lg:block">
+<button class="flex items-center justify-center w-14 h-14 rounded-full bg-white/50 dark:bg-slate-800/50 hover:bg-white dark:hover:bg-slate-700 transition-all text-primary dark:text-white" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons text-2xl">brightness_medium</span>
+</button>
+</div>
+<div class="space-y-2 mb-12 text-center lg:text-left pt-12 lg:pt-0">
+<p class="text-sm lg:text-base tracking-[0.2em] font-medium text-slate-600 dark:text-slate-300 uppercase mb-4 animate-fade-in-up">
+                    Quantitative Approaches in Drug Development: A Path Forward
+                </p>
+<h1 class="font-display text-7xl lg:text-[10rem] leading-none text-primary dark:text-purple-300 drop-shadow-sm tracking-tighter">
+                    ICoP <span class="font-light italic text-6xl lg:text-9xl ml-2 lg:ml-4 text-slate-500 dark:text-slate-400">2026</span>
+</h1>
+<h2 class="font-display text-5xl lg:text-8xl text-primary dark:text-purple-200 mt-2 lg:-mt-4 ml-2">
+                    India
+                </h2>
+</div>
+<nav class="mt-8 lg:mt-16">
+<p class="text-xs uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-6 border-b border-slate-300 dark:border-slate-700 w-24 pb-2">Explore</p>
+<ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+<li class="group cursor-pointer">
+<a class="block" href="schedule.html">
+<span class="block text-4xl lg:text-5xl font-display text-slate-800 dark:text-slate-100 group-hover:text-primary dark:group-hover:text-purple-300 transition-colors duration-300 italic group-hover:not-italic">
+                                Schedule
+                            </span>
+<span class="text-sm text-slate-500 dark:text-slate-400 mt-2 block opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">View full program</span>
+</a>
+</li>
+<li class="group cursor-pointer">
+<a class="block" href="speakers.html">
+<span class="block text-4xl lg:text-5xl font-display text-slate-800 dark:text-slate-100 group-hover:text-primary dark:group-hover:text-purple-300 transition-colors duration-300 italic group-hover:not-italic">
+                                Speakers
+                            </span>
+<span class="text-sm text-slate-500 dark:text-slate-400 mt-2 block opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">Meet the experts</span>
+</a>
+</li>
+<!-- Feedback link - to be replaced with something else later
+<li class="group cursor-pointer">
+<a class="block" href="#">
+<span class="block text-4xl lg:text-5xl font-display text-slate-800 dark:text-slate-100 group-hover:text-primary dark:group-hover:text-purple-300 transition-colors duration-300 italic group-hover:not-italic">
+                                Feedback
+                            </span>
+<span class="text-sm text-slate-500 dark:text-slate-400 mt-2 block opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">Help us improve!</span>
+</a>
+</li>
+-->
+<li class="group cursor-pointer">
+<a class="block" href="contact.html">
+<span class="block text-4xl lg:text-5xl font-display text-slate-800 dark:text-slate-100 group-hover:text-primary dark:group-hover:text-purple-300 transition-colors duration-300 italic group-hover:not-italic">
+                                Contact
+                            </span>
+<span class="text-sm text-slate-500 dark:text-slate-400 mt-2 block opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">Get in touch</span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</main>
+<aside class="w-full lg:w-72 flex-shrink-0 flex flex-col z-20 shadow-2xl">
+<div class="bg-gradient-to-br from-accent-purple to-primary dark:from-slate-800 dark:to-slate-900 text-white p-10 flex flex-col justify-center items-center lg:flex-1 text-center relative overflow-hidden group">
+<div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+<span class="material-icons text-5xl mb-4 text-purple-200 opacity-80 group-hover:scale-110 transition-transform duration-500">calendar_today</span>
+<h3 class="text-6xl font-display font-bold mb-1">29<span class="text-purple-300">–</span>30</h3>
+<p class="text-2xl font-light tracking-wide mb-1">January</p>
+<p class="text-xl font-medium text-purple-200">2026</p>
+<div class="mt-8 pt-8 border-t border-white/20 w-full">
+<p class="text-sm opacity-90 mb-1">Pre-Conference Workshop:</p>
+<p class="font-medium text-lg">28 Jan</p>
+<div class="w-full border-t border-white/20 my-4"></div>
+<p class="text-sm opacity-90 mb-1">Post-Conference Workshop:</p>
+<p class="font-medium text-lg">31 Jan</p>
+<h4 class="text-base font-bold text-white mt-6 leading-tight">
+                    Search Health Sciences Library,
+                    <br/>
+<span class="font-display italic text-lg text-purple-200">MAHE, Manipal</span>
+</h4>
+<div class="flex justify-center w-full relative z-10">
+<a href="https://maps.app.goo.gl/bkPcpw4d1e2sjVSr6" target="_blank" rel="noopener noreferrer" class="flex justify-center items-center space-x-2 text-sm font-semibold text-white hover:text-purple-200 transition-colors mt-2">
+<span>View on Map</span>
+<span class="material-icons text-sm">arrow_outward</span>
+</a>
+</div>
+</div>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-10 flex flex-col justify-center items-center lg:h-auto border-t lg:border-t-0 border-slate-100 dark:border-slate-700 relative text-center">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent-purple to-transparent lg:hidden"></div>
+<span class="material-icons text-5xl mb-4 text-primary dark:text-purple-400">place</span>
+<h4 class="text-lg font-bold text-slate-800 dark:text-white mb-2 leading-tight">
+                Fortune Valley View,
+                <br/>
+<span class="text-primary dark:text-purple-300 font-display italic text-2xl">Manipal</span>
+</h4>
+<p class="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-6">
+                Experience the coastal heritage.
+            </p>
+<a href="https://maps.app.goo.gl/1c3CML1ZdhxQ8Hx4A" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-2 text-sm font-semibold text-primary dark:text-purple-300 hover:text-accent-purple transition-colors">
+<span>View on Map</span>
+<span class="material-icons text-sm">arrow_outward</span>
+</a>
+<div class="absolute bottom-0 right-0 w-24 h-24 opacity-5 dark:opacity-10 pointer-events-none">
+<svg class="text-primary dark:text-white" fill="currentColor" viewBox="0 0 100 100">
+<path d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 90c-22.1 0-40-17.9-40-40s17.9-40 40-40 40 17.9 40 40-17.9 40-40 40z"></path>
+<path d="M50 20c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 50c-11 0-20-9-20-20s9-20 20-20 20 9 20 20-9 20-20 20z"></path>
+</svg>
+</div>
+</div>
+</aside>
+</div>
+<footer class="w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 px-6 text-center text-sm text-slate-700 dark:text-slate-300">
+Designed and Developed by <a href="https://www.linkedin.com/in/leroy-alvares/" target="_blank" rel="noopener noreferrer" class="font-semibold text-primary dark:text-purple-300 hover:text-primary-light transition-colors">Leroy Alvares</a> | ICoP Team
+</footer>
+</body></html>

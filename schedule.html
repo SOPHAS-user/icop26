@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ICoP 2026 Program Schedule</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3E1C63", // Deep Purple for text/branding
+                        "primary-light": "#6a4c93", 
+                        "background-light": "#FDF7F5", // Warm off-white
+                        "background-dark": "#0B0E16", // Deep navy/black
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#151b2b",
+                        "accent-purple": "#7E6CAA", // Sidebar purple
+                        "accent-blue": "#4A6FA5", // Ocean tones
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'sketch-pattern': "url('https://www.transparenttextures.com/patterns/sketch-header.png')",
+                    }
+                },
+            },
+        };
+    </script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style>::-webkit-scrollbar {
+        width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+        background: transparent; 
+    }
+    ::-webkit-scrollbar-thumb {
+        background: #cbd5e1; 
+        border-radius: 4px;
+    }
+    .mask-image-gradient-t {
+        mask-image: linear-gradient(to top, black, transparent);
+        -webkit-mask-image: linear-gradient(to top, black, transparent);
+    }
+    .day-content {
+        display: none;
+    }
+    .day-content.active {
+        display: block;
+    }
+</style>
+<script>
+    function switchDay(dayNum) {
+        // Hide all day contents
+        document.querySelectorAll('.day-content').forEach(el => {
+            el.classList.remove('active');
+        });
+        
+        // Show selected day
+        document.getElementById('day-' + dayNum).classList.add('active');
+        
+        // Update button styles
+        document.querySelectorAll('.day-btn').forEach(btn => {
+            btn.classList.remove('bg-primary', 'text-white', 'ring-4', 'ring-purple-50');
+            btn.classList.add('bg-white', 'text-primary', 'border', 'border-purple-100');
+        });
+        
+        // Highlight active button
+        event.target.classList.remove('bg-white', 'text-primary', 'border', 'border-purple-100');
+        event.target.classList.add('bg-primary', 'text-white', 'ring-4', 'ring-purple-50');
+    }
+</script>
+</head>
+<body class="bg-background-light text-slate-800 font-sans min-h-screen relative overflow-x-hidden selection:bg-purple-200">
+<div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+<!-- Top Left: Coconut Tree -->
+<img alt="Coconut tree sketch" class="absolute -top-20 -left-32 w-96 md:w-[30rem] opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/coconut.png"/>
+<!-- Top Right: Mahe Building -->
+<img alt="Mahe building sketch" class="absolute -top-32 -right-32 w-[32rem] opacity-[0.04] mix-blend-multiply grayscale" src="assets/outline_images/mahe.png"/>
+<!-- Top Center: Temple -->
+<img alt="Temple architecture sketch" class="absolute -top-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.03] mix-blend-multiply rotate-12 grayscale" src="assets/outline_images/temple.png"/>
+<!-- Middle Left: Coconut Tree -->
+<img alt="Coconut palm sketch" class="absolute top-1/3 -left-40 w-72 md:w-80 opacity-[0.04] mix-blend-multiply transform -rotate-6 grayscale contrast-150" src="assets/outline_images/coconut.png"/>
+<!-- Middle Right: Temple -->
+<img alt="Temple architecture sketch" class="absolute top-1/2 -right-48 w-96 opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/temple.png"/>
+<!-- Bottom Left: Temple -->
+<img alt="Temple architecture sketch" class="absolute -bottom-24 -left-48 w-96 md:w-[28rem] opacity-[0.06] mix-blend-multiply transform -rotate-12 grayscale contrast-125" src="assets/outline_images/temple.png"/>
+<!-- Bottom Right: Coconut Tree -->
+<img alt="Coconut palm sketch" class="absolute -bottom-32 -right-40 w-80 md:w-96 opacity-[0.05] mix-blend-multiply transform rotate-12 grayscale contrast-150" src="assets/outline_images/coconut.png"/>
+<!-- Bottom Center: Mahe Building -->
+<img alt="Mahe building sketch" class="absolute -bottom-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.04] mix-blend-multiply rotate-6 grayscale" src="assets/outline_images/mahe.png"/>
+<!-- Far Right Upper: Coconut Tree -->
+<img alt="Coconut tree sketch" class="absolute top-1/4 -right-20 w-64 md:w-80 opacity-[0.035] mix-blend-multiply transform -rotate-20 grayscale contrast-110" src="assets/outline_images/coconut.png"/>
+<!-- Far Left Lower: Mahe Building -->
+<img alt="Mahe building sketch" class="absolute bottom-1/4 -left-32 w-72 opacity-[0.04] mix-blend-multiply transform rotate-20 grayscale" src="assets/outline_images/mahe.png"/>
+</div>
+<main class="relative z-10 w-full max-w-5xl mx-auto px-6 pt-24 pb-32">
+<a class="inline-flex items-center text-sm font-medium tracking-wide text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-purple-300 transition-colors mb-8 group" href="index.html">
+<span class="material-icons text-lg mr-2 group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                    Back to Home
+                </a>
+<div class="text-center mb-16 space-y-4 animate-fade-in-up">
+<h1 class="font-display text-6xl md:text-8xl text-primary tracking-tight drop-shadow-sm">Schedule</h1>
+<p class="font-sans text-accent-purple tracking-[0.2em] uppercase text-sm font-semibold">ICoP 2026 • Fortune Valley View</p>
+</div>
+<div class="flex flex-wrap justify-center gap-4 mb-20 sticky top-4 z-40 bg-background-light/95 backdrop-blur-sm py-4 rounded-full md:rounded-none md:bg-transparent md:backdrop-filter-none md:static">
+<button class="day-btn px-8 py-3 bg-primary text-white rounded-full font-display text-xl shadow-lg shadow-purple-900/10 transition-transform hover:-translate-y-1 ring-4 ring-purple-50" onclick="switchDay(1)">
+                Day 1 <span class="text-sm font-sans opacity-70 ml-2">Jan 29</span>
+</button>
+<button class="day-btn px-8 py-3 bg-white text-primary border border-purple-100 rounded-full font-display text-xl hover:bg-purple-50 transition-all hover:-translate-y-1" onclick="switchDay(2)">
+                Day 2 <span class="text-sm font-sans opacity-60 ml-2">Jan 30</span>
+</button>
+</div>
+<div class="relative pl-4 md:pl-8 space-y-12 before:absolute before:inset-y-0 before:left-4 md:before:left-8 before:w-px before:bg-gradient-to-b before:from-purple-200 before:via-purple-200 before:to-transparent">
+
+<!-- Day 1 Content -->
+<div id="day-1" class="day-content active space-y-12">
+
+<!-- Forenoon Session Header -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="bg-gradient-to-r from-primary to-accent-purple text-white p-6 md:p-8 rounded-2xl shadow-lg">
+<h2 class="font-display text-3xl md:text-4xl mb-2">Day 1: Thu, 29 Jan 2026</h2>
+<h3 class="text-xl md:text-2xl font-semibold mb-4">Forenoon Session</h3>
+<p class="text-sm mb-2"><span class="font-bold">Chairpersons:</span> Dr. Rama Sivasubramanian, Director R&D, Teva pharma, Maharashtra, India</p>
+<p class="text-sm"><span class="font-bold">Theme:</span> Quantitative Methods for Drug Development Decision</p>
+</div>
+</div>
+
+<!-- Power Breakfast + Poster Exhibitions -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">7:00 - 9:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Power Breakfast + Poster Exhibitions</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Inauguration -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">9:00 - 9:15</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Inauguration</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Keynote Speech -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">9:15 - 10:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<span class="inline-block px-3 py-1 rounded-full bg-purple-100 text-primary text-xs font-semibold mb-3 tracking-wide uppercase">Keynote</span>
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Impact of MIDD in Oncology</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Amit Roy</span>
+</div>
+<p class="text-slate-600 text-sm">VP, Scientific & Strategic Consulting, PumasAI DE, USA</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Session 1 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">10:00 - 10:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">A Quantitative Framework to Assess Biomarkers as Surrogate Endpoints: Applications in Drug Development</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr Mathangi Gopalakrishnan</span>
+</div>
+<p class="text-slate-600 text-sm">Associate Professor, Center for Translational Medicine, University of Maryland school of Pharmacy Baltimore, MD, USA</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Coffee Break -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">10:30 - 11:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Coffee Break</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Session 2 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">11:00 - 11:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Modelling How Early Treatment Initiation Improves Post-Treatment Control of HIV Infection</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Narendra Dixit</span>
+</div>
+<p class="text-slate-600 text-sm">Professor, Department of Chemical Engineering & Bioengineering, IISc Bengaluru, Karnataka, India</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Panel Discussion -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">11:30 - 12:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Panel Discussion</h3>
+<p class="text-slate-600 text-sm">All Forenoon Speakers & Select Experts</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Lunch -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">12:00 - 13:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Lunch, Exhibits, Poster sessions</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Session Header -->
+<div class="relative pl-8 md:pl-12 group mt-12">
+<div class="absolute left-[-5px] md:left-[-1px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="bg-gradient-to-r from-primary to-accent-purple text-white p-6 md:p-8 rounded-2xl shadow-lg">
+<h3 class="text-xl md:text-2xl font-semibold mb-4">Afternoon Session</h3>
+<p class="text-sm mb-2"><span class="font-bold">Chairpersons:</span> Dr. Swacharan Kolipara, Head, Biopharmaceutics, Global Clinical Management, Dr. Reddy's Laboratories Ltd, Hyderabad, Telangana, India & Dr. Suraj Bhansali, R&D Data Science & Head of India Country Operations, Certara, Hyderabad, Telangana, India</p>
+<p class="text-sm"><span class="font-bold">Theme:</span> Quantitative Science in Generic & New Drug Development (Small Molecules)</p>
+</div>
+</div>
+
+<!-- Afternoon Session 1 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">13:30 - 13:50</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Harnessing PBBM & PBPK modelling for Next-Generation Generic Drug Development</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Rajkumar Boddu</span>
+</div>
+<p class="text-slate-600 text-sm">Team Lead, Biopharmaceutics, Global Clinical Management, Dr. Reddy's Laboratories Hyderabad, Telangana, India</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Session 2 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">13:50 - 14:10</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Optimising & Enhancing Drug Development Using Simcyp PBPK Simulator</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Ms. Maitri Sanghavi</span>
+</div>
+<p class="text-slate-600 text-sm">Research Scientist, SIMCYP, Certara Hyderabad, Telangana, India</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Session 3 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">14:10 - 14:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Hypothesis Generation With PBPK to Identify Mechanisms Limiting Exposure of Orally Administered Drugs</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Sheila Annie Peters</span>
+</div>
+<p class="text-slate-600 text-sm">Executive Director, Boehringer Ingelheim Germany</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Coffee Break -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">14:30 - 15:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Coffee Break</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Session 4 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">15:00 - 15:20</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Physiologically-Based Pharmacokinetic Modelling: The Critical Component of Model-Informed Drug Development</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Samarth Thakore</span>
+</div>
+<p class="text-slate-600 text-sm">Principal Scientist II, PK Sciences, NIBR, Novartis Hyderabad, India</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Session 5 -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">15:20 - 15:40</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Physiologically Based IVIVC for Complex Formulations: Focus on Long-Acting Injectables</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Anant Ketkar</span>
+</div>
+<p class="text-slate-600 text-sm">Principal Scientist & Scientific Lead - India, Simulations Plus, Inc</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Panel Discussion -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">15:40 - 16:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Panel Discussion</h3>
+<p class="text-slate-600 text-sm">All Afternoon Speakers & Select Experts</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Gala Night -->
+<div class="relative pl-8 md:pl-12 group pb-12">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">18:00 - 21:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Gala Night</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Day 2 Content -->
+<div id="day-2" class="day-content space-y-12 relative pl-4 md:pl-8 before:absolute before:inset-y-0 before:left-4 md:before:left-8 before:w-px before:bg-gradient-to-b before:from-purple-200 before:via-purple-200 before:to-transparent">
+
+<!-- Forenoon Session Header -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="bg-gradient-to-r from-primary to-accent-purple text-white p-6 md:p-8 rounded-2xl shadow-lg">
+<h2 class="font-display text-3xl md:text-4xl mb-2">Day 2: Fri, 30 Jan 2026</h2>
+<h3 class="text-xl md:text-2xl font-semibold mb-4">Forenoon Session</h3>
+<p class="text-sm mb-2"><span class="font-bold">Chairpersons:</span> Dr. Bhairav Paleja, Principal Scientist, Vantage Research, Chennai, Tamil Nadu, India & Dr. Balaji Agoram, Senior Vice President, Arcus Biosciences, Brisbane, CA, USA</p>
+<p class="text-sm"><span class="font-bold">Theme:</span> Quantitative Sciences in Biologics, Biosimilars & New modalities (Large Molecules)</p>
+</div>
+</div>
+
+<!-- Continuation Lecture -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">9:00 - 9:45</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<span class="inline-block px-3 py-1 rounded-full bg-purple-100 text-primary text-xs font-semibold mb-3 tracking-wide uppercase">Continuation Lecture</span>
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Pharmacokinetics to Systems: Evolving Personalized Dosing in the Era of Precision Medicine</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Ramalingam Sankaran</span>
+</div>
+<p class="text-slate-600 text-sm">Dr. Krishna Devarakonda, Visiting & Adjunct Professor, Thomas J. Long School of Pharmacy - University of the Pacific, Richmond, TX, USA</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Scientific Briefing & Certificate Ceremony -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">9:45 - 10:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Scientific Briefing & Pharmacometrics Certificate Graduation Ceremony</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Progressive Disease Session -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">10:30 - 11:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Does Progressive Disease Justify Discontinuation: A Simulation Analysis</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Kannan Thiagarajan</span>
+</div>
+<p class="text-slate-600 text-sm">Principal Scientist, Vantage Research, Chennai, Tamil Nadu, India</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Coffee Break -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">11:00 - 11:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Coffee Break</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Mechanistic Models Session -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">11:30 - 12:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">The Role of Mechanistic Models to Complement Pharmacometrics in Model-Informed Drug Development</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Khamir Mehta</span>
+</div>
+<p class="text-slate-600 text-sm">Senior Director in Clinical Pharmacology, modelling & Simulation Department, San Francisco, CA, USA</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Novel Modelling Session -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">12:00 - 12:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Novel modelling Approaches Towards Dose Optimization of TGF𝛽 Oncology</h3>
+<div class="flex items-center gap-2 text-slate-600 text-sm mb-4 font-medium">
+<span class="material-icons text-base">mic</span>
+<span>Dr. Karthick Vishwanathan</span>
+</div>
+<p class="text-slate-600 text-sm">Executive Director, Head of CPQP Oncology, AstraZeneca Waltham Site Head, Waltham, MA, USA</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Panel Discussion -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">12:30 - 13:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Panel Discussion</h3>
+<p class="text-slate-600 text-sm">All Forenoon Speakers & Select Experts</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Lunch, Exhibits, Posters -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">13:00 - 14:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Lunch, Exhibits, Poster sessions</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Session Header -->
+<div class="relative pl-8 md:pl-12 group mt-12">
+<div class="absolute left-[-5px] md:left-[-1px] top-1 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="bg-gradient-to-r from-primary to-accent-purple text-white p-6 md:p-8 rounded-2xl shadow-lg">
+<h3 class="text-xl md:text-2xl font-semibold mb-4">Afternoon Session</h3>
+<p class="text-sm mb-2"><span class="font-bold">Chairpersons:</span> Dr. Swacharan Kolipara, Head, Biopharmaceutics, Global Clinical Management, Dr. Reddy's Laboratories Ltd, Hyderabad, Telangana, India & Dr. Vijay Ivaturi, Co-Founder & CEO, Pumas-AI Inc, DE, USA; Endowed Chair, Center for Pharmacometrics, Manipal, Karnataka, India; President, ISoP, Branchburg, NJ, USA</p>
+<p class="text-sm"><span class="font-bold">Theme:</span> Students/Young Professional Sessions</p>
+</div>
+</div>
+
+<!-- Student Podium Presentations -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">14:00 - 15:15</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Student Podium Presentations & Roller Coaster Sessions</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Afternoon Coffee Break -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">15:15 - 15:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Coffee Break</h3>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Open House Session -->
+<div class="relative pl-8 md:pl-12 group">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-primary ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">15:30 - 16:30</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-purple-50/50 hover:shadow-xl hover:shadow-purple-900/5">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-3">Open House: Industry Perspectives, Opportunities, Future in Pharmacometrics in India</h3>
+<p class="text-slate-600 text-sm mb-3"><span class="font-bold">Speakers:</span></p>
+<p class="text-slate-600 text-sm mb-2">📍 Dr. Vijay Ivaturi - Co-Founder & CEO, Pumas-AI Inc, DE, USA; Endowed Chair, Center for Pharmacometrics, Manipal, Karnataka, India; President, ISoP, Branchburg, NJ, USA</p>
+<p class="text-slate-600 text-sm mb-2">📍 Dr Mathangi Gopalakrishan - Associate Professor, Center for Translational Medicine, University of Maryland school of Pharmacy, Baltimore, MD, USA</p>
+<p class="text-slate-600 text-sm">📍 Industry Experts from Various Companies</p>
+</div>
+</div>
+</div>
+</div>
+
+<!-- Closure -->
+<div class="relative pl-8 md:pl-12 group pb-12">
+<div class="absolute left-[-5px] md:left-[-1px] top-8 md:top-2 w-3 h-3 rounded-full bg-accent-purple ring-4 ring-background-light z-10"></div>
+<div class="flex flex-col md:flex-row gap-4 md:gap-8 items-start">
+<div class="w-32 flex-shrink-0 pt-1 mt-1 md:mt-0">
+<span class="font-mono text-sm text-accent-purple font-bold block bg-purple-50 md:bg-transparent px-2 py-1 rounded md:p-0 w-fit">16:30 - 17:00</span>
+</div>
+<div class="flex-1 w-full">
+<div class="bg-purple-50 border-2 border-accent-purple p-6 md:p-8 rounded-2xl hover:shadow-lg transition-all duration-300">
+<h3 class="font-display text-2xl md:text-3xl text-primary mb-2">Closure</h3>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</main>
+<footer class="w-full bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 py-6 px-6 text-center text-sm text-slate-700 dark:text-slate-300">
+Designed and Developed by <a href="https://www.linkedin.com/in/leroy-alvares/" target="_blank" rel="noopener noreferrer" class="font-semibold text-primary dark:text-purple-300 hover:text-primary-light transition-colors">Leroy Alvares</a> | ICoP Team
+</footer>
+</body></html>
