@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ICoP 2026 Program Schedule</title>
+<title>ICoP 2026 | Schedule</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
 <script>
         tailwind.config = {
@@ -66,11 +66,11 @@
         // Update button styles
         document.querySelectorAll('.day-btn').forEach(btn => {
             btn.classList.remove('bg-primary', 'text-white', 'ring-4', 'ring-purple-50');
-            btn.classList.add('bg-white', 'text-primary', 'border', 'border-purple-100');
+            btn.classList.add('bg-white', 'text-primary', 'border', 'border-purple-100', 'hover:bg-purple-50');
         });
         
         // Highlight active button
-        event.target.classList.remove('bg-white', 'text-primary', 'border', 'border-purple-100');
+        event.target.classList.remove('bg-white', 'text-primary', 'border', 'border-purple-100', 'hover:bg-purple-50');
         event.target.classList.add('bg-primary', 'text-white', 'ring-4', 'ring-purple-50');
     }
 </script>
@@ -78,25 +78,25 @@
 <body class="bg-background-light text-slate-800 font-sans min-h-screen relative overflow-x-hidden selection:bg-purple-200">
 <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
 <!-- Top Left: Coconut Tree -->
-<img alt="Coconut tree sketch" class="absolute -top-20 -left-32 w-96 md:w-[30rem] opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/coconut.png"/>
+<img alt="Coconut tree sketch" class="absolute -top-20 -left-32 w-96 md:w-[30rem] opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/coconut.webp"/>
 <!-- Top Right: Mahe Building -->
-<img alt="Mahe building sketch" class="absolute -top-32 -right-32 w-[32rem] opacity-[0.04] mix-blend-multiply grayscale" src="assets/outline_images/mahe.png"/>
+<img alt="Mahe building sketch" class="absolute -top-32 -right-32 w-[32rem] opacity-[0.04] mix-blend-multiply grayscale" src="assets/outline_images/mahe.webp"/>
 <!-- Top Center: Temple -->
-<img alt="Temple architecture sketch" class="absolute -top-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.03] mix-blend-multiply rotate-12 grayscale" src="assets/outline_images/temple.png"/>
+<img alt="Temple architecture sketch" class="absolute -top-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.03] mix-blend-multiply rotate-12 grayscale" src="assets/outline_images/temple.webp"/>
 <!-- Middle Left: Coconut Tree -->
-<img alt="Coconut palm sketch" class="absolute top-1/3 -left-40 w-72 md:w-80 opacity-[0.04] mix-blend-multiply transform -rotate-6 grayscale contrast-150" src="assets/outline_images/coconut.png"/>
+<img alt="Coconut palm sketch" class="absolute top-1/3 -left-40 w-72 md:w-80 opacity-[0.04] mix-blend-multiply transform -rotate-6 grayscale contrast-150" src="assets/outline_images/coconut.webp"/>
 <!-- Middle Right: Temple -->
-<img alt="Temple architecture sketch" class="absolute top-1/2 -right-48 w-96 opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/temple.png"/>
+<img alt="Temple architecture sketch" class="absolute top-1/2 -right-48 w-96 opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/temple.webp"/>
 <!-- Bottom Left: Temple -->
-<img alt="Temple architecture sketch" class="absolute -bottom-24 -left-48 w-96 md:w-[28rem] opacity-[0.06] mix-blend-multiply transform -rotate-12 grayscale contrast-125" src="assets/outline_images/temple.png"/>
+<img alt="Temple architecture sketch" class="absolute -bottom-24 -left-48 w-96 md:w-[28rem] opacity-[0.06] mix-blend-multiply transform -rotate-12 grayscale contrast-125" src="assets/outline_images/temple.webp"/>
 <!-- Bottom Right: Coconut Tree -->
-<img alt="Coconut palm sketch" class="absolute -bottom-32 -right-40 w-80 md:w-96 opacity-[0.05] mix-blend-multiply transform rotate-12 grayscale contrast-150" src="assets/outline_images/coconut.png"/>
+<img alt="Coconut palm sketch" class="absolute -bottom-32 -right-40 w-80 md:w-96 opacity-[0.05] mix-blend-multiply transform rotate-12 grayscale contrast-150" src="assets/outline_images/coconut.webp"/>
 <!-- Bottom Center: Mahe Building -->
-<img alt="Mahe building sketch" class="absolute -bottom-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.04] mix-blend-multiply rotate-6 grayscale" src="assets/outline_images/mahe.png"/>
+<img alt="Mahe building sketch" class="absolute -bottom-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.04] mix-blend-multiply rotate-6 grayscale" src="assets/outline_images/mahe.webp"/>
 <!-- Far Right Upper: Coconut Tree -->
-<img alt="Coconut tree sketch" class="absolute top-1/4 -right-20 w-64 md:w-80 opacity-[0.035] mix-blend-multiply transform -rotate-20 grayscale contrast-110" src="assets/outline_images/coconut.png"/>
+<img alt="Coconut tree sketch" class="absolute top-1/4 -right-20 w-64 md:w-80 opacity-[0.035] mix-blend-multiply transform -rotate-20 grayscale contrast-110" src="assets/outline_images/coconut.webp"/>
 <!-- Far Left Lower: Mahe Building -->
-<img alt="Mahe building sketch" class="absolute bottom-1/4 -left-32 w-72 opacity-[0.04] mix-blend-multiply transform rotate-20 grayscale" src="assets/outline_images/mahe.png"/>
+<img alt="Mahe building sketch" class="absolute bottom-1/4 -left-32 w-72 opacity-[0.04] mix-blend-multiply transform rotate-20 grayscale" src="assets/outline_images/mahe.webp"/>
 </div>
 <main class="relative z-10 w-full max-w-5xl mx-auto px-6 pt-24 pb-32">
 <a class="inline-flex items-center text-sm font-medium tracking-wide text-slate-500 dark:text-slate-400 hover:text-primary dark:hover:text-purple-300 transition-colors mb-8 group" href="index.html">
@@ -111,7 +111,7 @@
 <button class="day-btn px-8 py-3 bg-primary text-white rounded-full font-display text-xl shadow-lg shadow-purple-900/10 transition-transform hover:-translate-y-1 ring-4 ring-purple-50" onclick="switchDay(1)">
                 Day 1 <span class="text-sm font-sans opacity-70 ml-2">Jan 29</span>
 </button>
-<button class="day-btn px-8 py-3 bg-white text-primary border border-purple-100 rounded-full font-display text-xl hover:bg-purple-50 transition-all hover:-translate-y-1" onclick="switchDay(2)">
+<button class="day-btn px-8 py-3 bg-white text-primary border border-purple-100 rounded-full font-display text-xl shadow-lg shadow-purple-900/10 hover:bg-purple-50 transition-all hover:-translate-y-1" onclick="switchDay(2)">
                 Day 2 <span class="text-sm font-sans opacity-60 ml-2">Jan 30</span>
 </button>
 </div>
@@ -126,7 +126,7 @@
 <div class="bg-gradient-to-r from-primary to-accent-purple text-white p-6 md:p-8 rounded-2xl shadow-lg">
 <h2 class="font-display text-3xl md:text-4xl mb-2">Day 1: Thu, 29 Jan 2026</h2>
 <h3 class="text-xl md:text-2xl font-semibold mb-4">Forenoon Session</h3>
-<p class="text-sm mb-2"><span class="font-bold">Chairpersons:</span> Dr. Rama Sivasubramanian, Director R&D, Teva pharma, Maharashtra, India</p>
+<p class="text-sm mb-2"><span class="font-bold">Chairpersons:</span> Dr. Rama Sivasubramanian, Director R&D, Teva Pharma, Maharashtra, India</p>
 <p class="text-sm"><span class="font-bold">Theme:</span> Quantitative Methods for Drug Development Decision</p>
 </div>
 </div>
