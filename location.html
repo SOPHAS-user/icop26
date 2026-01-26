@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event and Accommodation Locations</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3E1C63",
+                        "primary-light": "#6a4c93",
+                        "background-light": "#FDF7F5",
+                        "background-dark": "#0B0E16",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#151b2b",
+                        "accent-purple": "#7E6CAA",
+                        "accent-blue": "#4A6FA5",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1; 
+            border-radius: 4px;
+        }
+
+        /* ========== RESET & BASE STYLES ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDF7F5;
+            color: #333;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* ========== LAYOUT STYLES ========== */
+        .locations-container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .map-section {
+            display: flex;
+            gap: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 600px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .map-wrapper {
+            flex: 1;
+            min-width: 0;
+            position: relative;
+        }
+
+        .locations-sidebar {
+            width: 300px;
+            overflow-y: auto;
+            padding: 1.5rem;
+            border-left: 1px solid #e0e0e0;
+            background-color: #fafafa;
+        }
+
+        /* ========== MAP STYLES ========== */
+        #map {
+            width: 100%;
+            height: 100%;
+            min-height: 600px;
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 6px;
+        }
+
+        .popup-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #222;
+            margin: 0 0 0.75rem 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .popup-description {
+            font-size: 0.9rem;
+            color: #555;
+            margin: 0 0 1rem 0;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .directions-link {
+            display: block;
+            background-color: #f5f1f0;
+            color: #000000;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+            margin: 0 auto;
+            width: fit-content;
+            border: 1px solid #e8dfe0;
+        }
+
+        .directions-link:hover {
+            background-color: #ede5e4;
+        }
+
+        @media (max-width: 768px) {
+            .popup-title {
+                font-size: 1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .popup-description {
+                font-size: 0.85rem;
+                margin-bottom: 0.75rem;
+            }
+
+            .directions-link {
+                padding: 0.45rem 0.9rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .popup-title {
+                font-size: 0.95rem;
+                margin-bottom: 0.4rem;
+            }
+
+            .popup-description {
+                font-size: 0.8rem;
+                margin-bottom: 0.6rem;
+                line-height: 1.3;
+            }
+
+            .directions-link {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========== LIST STYLES ========== */
+        .locations-list {
+            list-style: none;
+        }
+
+        .locations-category {
+            margin-bottom: 2rem;
+        }
+
+        .locations-category h3 {
+            font-size: 1rem;
+            color: #3E1C63;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #3E1C63;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .location-item {
+            padding: 1rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-left: 4px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .location-item:hover {
+            background-color: #f0f7ff;
+            transform: translateX(4px);
+        }
+
+        .location-item.active {
+            background-color: #e6f2ff;
+            border-left-color: #3E1C63;
+            font-weight: 500;
+        }
+
+        .location-item-name {
+            display: block;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 0.25rem;
+        }
+
+        .location-item-type {
+            display: block;
+            font-size: 0.8rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* ========== CATEGORY-SPECIFIC COLORS ========== */
+        .location-item.type-venue {
+            border-left-color: #d32f2f;
+        }
+
+        .location-item.type-accommodation {
+            border-left-color: #1976d2;
+        }
+
+        .location-item.type-landmark {
+            border-left-color: #388e3c;
+        }
+
+        /* ========== BACK TO HOME BUTTON ========== */
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.3s;
+            margin-bottom: 1rem;
+            margin-left: 2rem;
+            margin-top: 1rem;
+            display: inline-flex;
+        }
+
+        .back-button:hover {
+            color: #3E1C63;
+        }
+
+        .back-button .material-icons {
+            font-size: 1.125rem;
+            margin-right: 0.5rem;
+            transition: transform 0.3s;
+        }
+
+        .back-button:hover .material-icons {
+            transform: translateX(-4px);
+        }
+
+        /* ========== PAGE TITLE ========== */
+        .page-title {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .page-title h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #3E1C63;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.25rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .page-title p {
+            font-size: 0.875rem;
+            color: #7E6CAA;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* ========== BACKGROUND IMAGES ========== */
+        .background-decoration {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .background-decoration img {
+            position: absolute;
+            mix-blend-mode: multiply;
+            filter: grayscale(100%);
+        }
+
+        /* ========== RESPONSIVE STYLES ========== */
+        @media (max-width: 1024px) {
+            .map-section {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            #map {
+                min-height: 500px;
+            }
+
+            .locations-sidebar {
+                width: 100%;
+                border-left: none;
+                border-top: 1px solid #e0e0e0;
+                max-height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .locations-container {
+                padding: 1rem 0.5rem;
+            }
+
+            .map-section {
+                gap: 1rem;
+                border-radius: 0;
+                box-shadow: none;
+            }
+
+            #map {
+                min-height: 350px;
+            }
+
+            .locations-sidebar {
+                padding: 1rem;
+                max-height: 350px;
+            }
+
+            .locations-category h3 {
+                font-size: 0.9rem;
+            }
+
+            .location-item {
+                padding: 0.75rem;
+                font-size: 0.95rem;
+            }
+
+            .location-item-name {
+                margin-bottom: 0.2rem;
+            }
+
+            .page-title h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* ========== MOBILE OPTIMIZATION ========== */
+        @media (max-width: 480px) {
+            .locations-container {
+                padding: 0.75rem;
+            }
+
+            .map-section {
+                gap: 0;
+                padding: 0;
+            }
+
+            #map {
+                min-height: 300px;
+            }
+
+            .locations-sidebar {
+                padding: 1rem 0.75rem;
+                max-height: 300px;
+                border-radius: 0;
+            }
+
+            .location-item {
+                padding: 0.75rem 0.5rem;
+                font-size: 0.9rem;
+                margin-bottom: 0.25rem;
+            }
+
+            .location-item:hover {
+                transform: none;
+            }
+
+            .page-title h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-800 font-sans min-h-screen relative overflow-x-hidden selection:bg-purple-200">
+    <!-- Background Decoration Images -->
+    <div class="background-decoration">
+        <!-- Top Left: Coconut Tree -->
+        <img alt="Coconut tree sketch" class="absolute -top-20 -left-32 w-96 md:w-[30rem] opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/coconut.webp"/>
+        <!-- Top Right: Mahe Building -->
+        <img alt="Mahe building sketch" class="absolute -top-32 -right-32 w-[32rem] opacity-[0.04] mix-blend-multiply grayscale" src="assets/outline_images/mahe.webp"/>
+        <!-- Top Center: Temple -->
+        <img alt="Temple architecture sketch" class="absolute -top-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.03] mix-blend-multiply rotate-12 grayscale" src="assets/outline_images/temple.webp"/>
+        <!-- Middle Left: Coconut Tree -->
+        <img alt="Coconut palm sketch" class="absolute top-1/3 -left-40 w-72 md:w-80 opacity-[0.04] mix-blend-multiply transform -rotate-6 grayscale contrast-150" src="assets/outline_images/coconut.webp"/>
+        <!-- Middle Right: Temple -->
+        <img alt="Temple architecture sketch" class="absolute top-1/2 -right-48 w-96 opacity-[0.05] mix-blend-multiply transform rotate-45 grayscale contrast-125" src="assets/outline_images/temple.webp"/>
+        <!-- Bottom Left: Temple -->
+        <img alt="Temple architecture sketch" class="absolute -bottom-24 -left-48 w-96 md:w-[28rem] opacity-[0.06] mix-blend-multiply transform -rotate-12 grayscale contrast-125" src="assets/outline_images/temple.webp"/>
+        <!-- Bottom Right: Coconut Tree -->
+        <img alt="Coconut palm sketch" class="absolute -bottom-32 -right-40 w-80 md:w-96 opacity-[0.05] mix-blend-multiply transform rotate-12 grayscale contrast-150" src="assets/outline_images/coconut.webp"/>
+        <!-- Bottom Center: Mahe Building -->
+        <img alt="Mahe building sketch" class="absolute -bottom-40 left-1/2 transform -translate-x-1/2 w-80 md:w-96 opacity-[0.04] mix-blend-multiply rotate-6 grayscale" src="assets/outline_images/mahe.webp"/>
+        <!-- Far Right Upper: Coconut Tree -->
+        <img alt="Coconut tree sketch" class="absolute top-1/4 -right-20 w-64 md:w-80 opacity-[0.035] mix-blend-multiply transform -rotate-20 grayscale contrast-110" src="assets/outline_images/coconut.webp"/>
+        <!-- Far Left Lower: Mahe Building -->
+        <img alt="Mahe building sketch" class="absolute bottom-1/4 -left-32 w-72 opacity-[0.04] mix-blend-multiply transform rotate-20 grayscale" src="assets/outline_images/mahe.webp"/>
+    </div>
+
+    <main class="relative z-10 w-full">
+        <div class="locations-container">
+            <!-- Back to Home Button -->
+            <a class="back-button" href="index.html">
+                <span class="material-icons">arrow_back</span>
+                Back to Home
+            </a>
+
+            <!-- Page Title -->
+            <div class="page-title">
+                <h1>Locations</h1>
+                <p>ICoP 2026 • Fortune Valley View</p>
+            </div>
+            
+            <!-- Map Section -->
+            <div class="map-section">
+                <!-- Map Container -->
+                <div class="map-wrapper">
+                    <div id="map"></div>
+                </div>
+
+                <!-- Locations Sidebar/List -->
+                <aside class="locations-sidebar">
+                    <h2 style="font-size: 1.1rem; margin-bottom: 1.5rem; font-family: 'Playfair Display', serif;">Locations</h2>
+                    <div class="locations-list" id="locationsList"></div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+
+    <script>
+        // ========== LOCATION DATA ==========
+        const locations = [
+            {
+                id: 1,
+                name: "Fortune Valley View",
+                type: "venue",
+                mainVenue: true,
+                latitude: 13.354277487267186,
+                longitude: 74.79058184946976,
+                description: "The main conference venue, offering modern facilities and a comfortable setting for all scientific sessions."
+            },
+            {
+                id: 2,
+                name: "SEARCH Health Sciences Library, MAHE",
+                type: "venue",
+                mainVenue: false,
+                latitude: 13.35392251698753,
+                longitude: 74.78499913803296,
+                description: "The venue for the pre- and post-conference programs, set within a leading academic health sciences library environment."
+            },
+            {
+                id: 3,
+                name: "Royal Embassy, Manipal",
+                type: "accommodation",
+                latitude: 13.355773910986011,
+                longitude: 74.78324329052722,
+                description: "A premium accommodation option for delegates, providing comfortable residential facilities with easy access to the conference venues."
+            },
+            {
+                id: 4,
+                name: "NIH Block B, MAHE, Manipal",
+                type: "accommodation",
+                latitude: 13.354973212553599,
+                longitude: 74.78465556515616,
+                description: "A block of the New International Hostel at MAHE, offering secure on-campus lodging within the university’s residential complex for participants."
+            },
+            {
+                id: 5,
+                name: "Nehru Hostel Block B, MAHE, Manipal",
+                type: "accommodation",
+                latitude: 13.351124450315375,
+                longitude: 74.78486634233339,
+                description: "A designated block within the Nehru Hostel at MAHE, serving as convenient on-campus accommodation for conference attendees."
+            },
+            {
+                id: 6,
+                name: "Nehru Hostel Block A, MAHE, Manipal",
+                type: "accommodation",
+                latitude: 13.351124450315375,
+                longitude: 74.78486634233339,
+                description: "A designated block of the Nehru Hostel at MAHE, providing accessible and functional residential facilities for delegates staying on campus."
+            },
+            {
+                id: 7,
+                name: "Tiger Circle, Manipal",
+                type: "landmark",
+                latitude: 13.352410736035743,
+                longitude: 74.78724531205182,
+                description: "A well-known central junction near the main bus stand, serving as a key transport point for local and intercity buses and providing easy access around town."
+            },
+            {
+                id: 8,
+                name: "Coin Circle, Manipal",
+                type: "landmark",
+                latitude: 13.35871666506468,
+                longitude: 74.78516599769966,
+                description: "A recognizable roundabout featuring the “The Coinage” monument commemorating Upendra Pai and marking a prominent urban landmark in Manipal."
+            },
+            {
+                id: 9,
+                name: "MAHE Edu Building",
+                type: "landmark",
+                latitude: 13.353362430153135,
+                longitude: 74.7848984558608,
+                description: "A principal academic and administrative building at Manipal Academy of Higher Education, housing key university offices and services within the campus."
+            }
+        ];
+
+        // ========== INITIALIZE MAP ==========
+        const map = L.map('map').setView([13.353, 74.785], 18);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19,
+            minZoom: 2
+        }).addTo(map);
+
+        // ========== CREATE CUSTOM ICONS ==========
+        const iconConfig = {
+            venue: {
+                emoji: '🏢',
+                iconSize: [44, 44],
+                popupAnchor: [0, -22]
+            },
+            accommodation: {
+                emoji: '🏨',
+                iconSize: [44, 44],
+                popupAnchor: [0, -22]
+            },
+            landmark: {
+                emoji: '🗺️',
+                iconSize: [44, 44],
+                popupAnchor: [0, -22]
+            }
+        };
+
+        function createIcon(type) {
+            const config = iconConfig[type];
+
+            return L.divIcon({
+                html: `<div style="
+                    font-size: 38px;
+                    text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+                    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+                ">${config.emoji}</div>`,
+                iconSize: config.iconSize,
+                popupAnchor: config.popupAnchor,
+                className: 'custom-icon'
+            });
+        }
+
+        // ========== MARKERS & POPUPS ==========
+        const markers = {};
+        const markerGroup = L.featureGroup();
+
+        locations.forEach(location => {
+            const marker = L.marker(
+                [location.latitude, location.longitude],
+                { icon: createIcon(location.type) }
+            ).addTo(map);
+
+            // Determine popup width based on screen size
+            const popupWidth = window.innerWidth <= 480 ? '200px' : window.innerWidth <= 768 ? '240px' : '280px';
+            const isMobileOrTablet = window.innerWidth <= 768;
+
+            // Create popup content
+            const popupContent = `
+                <div style="width: ${popupWidth}; padding: 0; margin: 0; text-align: center;">
+                    <div class="popup-title">${location.name}</div>
+                    ${!isMobileOrTablet ? `<div class="popup-description">${location.description}</div>` : ''}
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=${location.latitude},${location.longitude}" 
+                       target="_blank" 
+                       class="directions-link">
+                        Get Directions →
+                    </a>
+                </div>
+            `;
+
+            marker.bindPopup(popupContent);
+
+            // Store marker reference and bind list interaction
+            markers[location.id] = {
+                marker: marker,
+                location: location
+            };
+
+            marker.on('click', () => {
+                highlightListItem(location.id);
+            });
+
+            markerGroup.addLayer(marker);
+        });
+
+        // ========== AUTO-FIT BOUNDS ==========
+        map.fitBounds(markerGroup.getBounds(), { padding: [50, 50] });
+
+        // ========== OPEN MAIN VENUE POPUP ON LOAD ==========
+        setTimeout(() => {
+            const mainVenue = locations.find(loc => loc.mainVenue);
+            if (mainVenue && markers[mainVenue.id]) {
+                markers[mainVenue.id].marker.openPopup();
+                highlightListItem(mainVenue.id);
+            }
+        }, 500);
+
+        // ========== RENDER LOCATIONS LIST ==========
+        function renderLocationsList() {
+            const listContainer = document.getElementById('locationsList');
+            listContainer.innerHTML = '';
+
+            // Icon mapping for categories
+            const categoryIcons = {
+                venue: '🏢',
+                accommodation: '🏨',
+                landmark: '🗺️'
+            };
+
+            // Group locations by type
+            const grouped = {
+                venue: [],
+                accommodation: [],
+                landmark: []
+            };
+
+            locations.forEach(loc => {
+                grouped[loc.type].push(loc);
+            });
+
+            // Create category sections
+            const categoryLabels = {
+                venue: 'Conference Venues',
+                accommodation: 'Accommodation Areas',
+                landmark: 'Landmarks'
+            };
+
+            const categoryOrder = ['venue', 'accommodation', 'landmark'];
+
+            categoryOrder.forEach(type => {
+                if (grouped[type].length > 0) {
+                    const categoryDiv = document.createElement('div');
+                    categoryDiv.className = 'locations-category';
+
+                    const categoryTitle = document.createElement('h3');
+                    categoryTitle.innerHTML = `${categoryIcons[type]} ${categoryLabels[type]}`;
+                    categoryDiv.appendChild(categoryTitle);
+
+                    grouped[type].forEach(location => {
+                        const listItem = document.createElement('li');
+                        listItem.className = `location-item type-${location.type}`;
+                        listItem.id = `list-item-${location.id}`;
+                        listItem.innerHTML = `
+                            <span class="location-item-name">${location.name}</span>
+                            <span class="location-item-type">${location.type}</span>
+                        `;
+
+                        listItem.addEventListener('click', () => {
+                            zoomToMarker(location.id);
+                        });
+
+                        categoryDiv.appendChild(listItem);
+                    });
+
+                    listContainer.appendChild(categoryDiv);
+                }
+            });
+        }
+
+        // ========== INTERACTION HANDLERS ==========
+        function zoomToMarker(locationId) {
+            const { marker, location } = markers[locationId];
+            map.setView(marker.getLatLng(), 16, { animate: true });
+            marker.openPopup();
+            highlightListItem(locationId);
+        }
+
+        function highlightListItem(locationId) {
+            // Remove active class from all items
+            document.querySelectorAll('.location-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to current item
+            const activeItem = document.getElementById(`list-item-${locationId}`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+
+                // Scroll into view on mobile
+                activeItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        //  INITIALIZE LIST ON PAGE LOAD 
+        renderLocationsList();
+    </script>
+</body>
+</html>
